@@ -15,14 +15,6 @@
  */
 package org.springframework.samples.petclinic.repository.jdbc;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
@@ -42,6 +34,9 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+import java.util.*;
+
 /**
  * @author Ken Krebs
  * @author Juergen Hoeller
@@ -55,13 +50,13 @@ import org.springframework.stereotype.Repository;
 @Profile("jdbc")
 public class JdbcPetRepositoryImpl implements PetRepository {
 
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private SimpleJdbcInsert insertPet;
+    private final SimpleJdbcInsert insertPet;
 
-    private OwnerRepository ownerRepository;
+    private final OwnerRepository ownerRepository;
 
-    private VisitRepository visitRepository;
+    private final VisitRepository visitRepository;
 
 
     @Autowired
@@ -126,8 +121,8 @@ public class JdbcPetRepositoryImpl implements PetRepository {
             .addValue("type_id", pet.getType().getId())
             .addValue("owner_id", pet.getOwner().getId());
     }
-    
-	@Override
+
+    @Override
 	public Collection<Pet> findAll() throws DataAccessException {
 		Map<String, Object> params = new HashMap<>();
 		Collection<Pet> pets = new ArrayList<Pet>();

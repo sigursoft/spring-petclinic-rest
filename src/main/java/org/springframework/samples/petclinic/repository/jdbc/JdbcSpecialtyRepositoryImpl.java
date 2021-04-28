@@ -16,12 +16,6 @@
 
 package org.springframework.samples.petclinic.repository.jdbc;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
@@ -35,28 +29,32 @@ import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.repository.SpecialtyRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Vitaliy Fedoriv
- *
  */
 
 @Repository
 @Profile("jdbc")
 public class JdbcSpecialtyRepositoryImpl implements SpecialtyRepository {
-	
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
-	private SimpleJdbcInsert insertSpecialty;
 
-	@Autowired
-	public JdbcSpecialtyRepositoryImpl(DataSource dataSource) {
-		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-		this.insertSpecialty = new SimpleJdbcInsert(dataSource)
-	            .withTableName("specialties")
-	            .usingGeneratedKeyColumns("id");
-	}
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	@Override
+    private final SimpleJdbcInsert insertSpecialty;
+
+    @Autowired
+    public JdbcSpecialtyRepositoryImpl(DataSource dataSource) {
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+        this.insertSpecialty = new SimpleJdbcInsert(dataSource)
+            .withTableName("specialties")
+            .usingGeneratedKeyColumns("id");
+    }
+
+    @Override
 	public Specialty findById(int id) {
 		Specialty specialty;
         try {

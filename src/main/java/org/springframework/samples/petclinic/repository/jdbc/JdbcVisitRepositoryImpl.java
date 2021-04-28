@@ -32,14 +32,9 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * A simple JDBC-based implementation of the {@link VisitRepository} interface.
@@ -57,7 +52,7 @@ import java.util.Map;
 @Profile("jdbc")
 public class JdbcVisitRepositoryImpl implements VisitRepository {
 
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     protected SimpleJdbcInsert insertVisit;
 
@@ -101,8 +96,8 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 
         return visits;
     }
-    
-	@Override
+
+    @Override
 	public Visit findById(int id) throws DataAccessException {
 		Visit visit;
 		try {

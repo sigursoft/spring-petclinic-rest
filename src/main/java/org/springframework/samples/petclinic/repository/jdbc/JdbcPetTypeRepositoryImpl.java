@@ -16,14 +16,6 @@
 
 package org.springframework.samples.petclinic.repository.jdbc;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
@@ -39,28 +31,30 @@ import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.PetTypeRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+import java.util.*;
+
 /**
  * @author Vitaliy Fedoriv
- *
  */
 
 @Repository
 @Profile("jdbc")
 public class JdbcPetTypeRepositoryImpl implements PetTypeRepository {
-	
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
-	private SimpleJdbcInsert insertPetType;
-	
-	@Autowired
-	public JdbcPetTypeRepositoryImpl(DataSource dataSource) {
-		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-		this.insertPetType = new SimpleJdbcInsert(dataSource)
-	            .withTableName("types")
-	            .usingGeneratedKeyColumns("id");
-	}
 
-	@Override
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    private final SimpleJdbcInsert insertPetType;
+
+    @Autowired
+    public JdbcPetTypeRepositoryImpl(DataSource dataSource) {
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+        this.insertPetType = new SimpleJdbcInsert(dataSource)
+            .withTableName("types")
+            .usingGeneratedKeyColumns("id");
+    }
+
+    @Override
 	public PetType findById(int id) {
 		PetType petType;
         try {
