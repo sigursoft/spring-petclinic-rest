@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.petclinic.util;
+package org.springframework.samples.petclinic.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -63,6 +63,4 @@ public class ApplicationSwaggerConfig {
 		"Apache 2.0",
 		"http://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList());
    }
-
-
 }

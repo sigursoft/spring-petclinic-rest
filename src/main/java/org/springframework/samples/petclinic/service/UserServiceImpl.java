@@ -16,7 +16,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Override
     @Transactional
     public void saveUser(User user) throws Exception {
         if (isNull(user.getRoles()) || user.getRoles().isEmpty()) {
