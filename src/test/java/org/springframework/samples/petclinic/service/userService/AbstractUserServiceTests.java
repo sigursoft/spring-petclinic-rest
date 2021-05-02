@@ -1,8 +1,6 @@
 package org.springframework.samples.petclinic.service.userService;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.User;
 import org.springframework.samples.petclinic.service.UserService;
@@ -14,11 +12,6 @@ public abstract class AbstractUserServiceTests {
 
     @Autowired
     private UserService userService;
-
-    @Before
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void shouldAddUser() throws Exception {
