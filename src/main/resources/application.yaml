@@ -26,6 +26,7 @@ server:
   port: 9966
   servlet:
     context-path: /petclinic/
+  shutdown: "graceful"
 
 logging:
   level:

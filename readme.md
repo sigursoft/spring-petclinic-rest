@@ -23,7 +23,7 @@ cd spring-petclinic-rest
 
 ### With Docker
 ```
-docker run -p 9966:9966 springcommunity/spring-petclinic-rest
+docker run -p 9966:9966 -e DB_HOSTNAME=host.docker.internal --add-host host.docker.internal:host-gateway -it --rm spring-petclinic-rest:2.4.5-SNAPSHOT
 ```
 
 You can then access petclinic here: [http://localhost:9966/petclinic/](http://localhost:9966/petclinic/)
