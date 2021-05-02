@@ -1,0 +1,19 @@
+# uncomment for init database (first start)
+#spring.datasource.initialization-mode: always
+#spring.datasource.schema: classpath*:db/postgresql/initDB.sql
+#spring.datasource.data: classpath*:db/postgresql/populateDB.sql
+# PostgreSQL config start
+#----------------------------------------------------------------
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/petclinic
+    username: postgres
+    password: petclinic
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: none
+    open-in-view: true
+#----------------------------------------------------------------
+# PostgreSQL config end

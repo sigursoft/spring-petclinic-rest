@@ -1,0 +1,16 @@
+# HSQLDB config start
+#----------------------------------------------------------------
+spring:
+  datasource:
+    schema: classpath*:db/hsqldb/initDB.sql
+    data: classpath*:db/hsqldb/populateDB.sql
+    url: jdbc:hsqldb:mem:petclinic
+    username: sa
+    password: ''
+  jpa:
+    database: HSQL
+    database-platform: org.hibernate.dialect.HSQLDialect
+    hibernate.ddl-auto: none
+    open-in-view: true
+#----------------------------------------------------------------
+# HSQLDB config end

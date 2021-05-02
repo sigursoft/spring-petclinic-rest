@@ -1,0 +1,19 @@
+# uncomment for init database (first start)
+#spring.datasource.initialization-mode: always
+#spring.datasource.schema: classpath*:db/mysql/initDB.sql
+#spring.datasource.data: classpath*:db/mysql/populateDB.sql
+# MySQL config start
+#----------------------------------------------------------------
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/petclinic?useUnicode=true
+    username: pc
+    password: petclinic
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: MYSQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate.ddl-auto: none
+    open-in-view: true
+#----------------------------------------------------------------
+# MySQL config end 

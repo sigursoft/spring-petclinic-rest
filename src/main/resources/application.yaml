@@ -1,4 +1,3 @@
-# suppress inspection "UnusedProperty" for whole file
 # active profiles config
 #
 # application use two active profiles
@@ -17,16 +16,24 @@
 # When using Spring JDBC, use: jdbc
 # When using Spring Data JPA, use: spring-data-jpa
 # ------------------------------------------------
-# suppress inspection "UnusedProperty"
-spring.profiles.active=mariadb,spring-data-jpa
-# ------------------------------------------------
-server.port=9966
-server.servlet.context-path=/petclinic/
-spring.messages.basename=messages/messages
-logging.level.org.springframework=INFO
-#logging.level.org.springframework=DEBUG
-#logging.level.org.hibernate.SQL=DEBUG
-#logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+spring:
+  profiles:
+    active: mariadb,spring-data-jpa
+  messages:
+    basename: messages/messages
+
+server:
+  port: 9966
+  servlet:
+    context-path: /petclinic/
+
+logging:
+  level:
+    org:
+      springframework: INFO
+
 # enable the desired authentication type
 # by default the authentication is disabled
-petclinic.security.enable=false
+petclinic:
+  security:
+    enable: false
