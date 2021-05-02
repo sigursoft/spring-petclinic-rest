@@ -1,0 +1,20 @@
+================================================================================
+===        Spring PetClinic sample application - MariaDB Configuration       ===
+================================================================================
+
+@author Sam Brannen
+@author Costin Leau
+
+--------------------------------------------------------------------------------
+
+1) Download and install the MariaDB database,
+   which can be found here: https://mariadb.com/downloads/
+   Alternatively, you may use the official MariaDB docker image. Refer to the
+   README.md for the Docker command line.
+
+
+2) Create the PetClinic database and user by executing the "db/mariadb/initDB.sql"
+and "db/mariadb/populateDB.sql" scripts. Or uncomment strings
+#spring.datasource.schema=classpath*:db/mariadb/initDB.sql
+#spring.datasource.data=classpath*:db/mariadb/populateDB.sql
+ in application-mariadb.yaml file at the first time you run the app.
