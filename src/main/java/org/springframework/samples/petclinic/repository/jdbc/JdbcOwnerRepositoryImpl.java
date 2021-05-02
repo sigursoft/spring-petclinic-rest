@@ -107,6 +107,7 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
         } catch (EmptyResultDataAccessException ex) {
             throw new ObjectRetrievalFailureException(Owner.class, id);
         }
+        assert owner != null;
         loadPetsAndVisits(owner);
         return owner;
     }
@@ -120,6 +121,7 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
             new JdbcPetVisitExtractor()
         );
         Collection<PetType> petTypes = getPetTypes();
+        assert pets != null;
         for (JdbcPet pet : pets) {
             pet.setType(EntityUtils.getById(petTypes, PetType.class, pet.getTypeId()));
             owner.addPet(pet);
@@ -142,7 +144,7 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
 
     public Collection<PetType> getPetTypes() throws DataAccessException {
         return this.namedParameterJdbcTemplate.query(
-            "SELECT id, name FROM types ORDER BY name", new HashMap<String, Object>(),
+            "SELECT id, name FROM types ORDER BY name", new HashMap<>(),
             BeanPropertyRowMapper.newInstance(PetType.class));
     }
 
@@ -161,9 +163,9 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
     @Override
 	public Collection<Owner> findAll() throws DataAccessException {
 		List<Owner> owners = this.namedParameterJdbcTemplate.query(
-	            "SELECT id, first_name, last_name, address, city, telephone FROM owners",
-	            new HashMap<String, Object>(),
-	            BeanPropertyRowMapper.newInstance(Owner.class));
+            "SELECT id, first_name, last_name, address, city, telephone FROM owners",
+            new HashMap<>(),
+            BeanPropertyRowMapper.newInstance(Owner.class));
 		for (Owner owner : owners) {
             loadPetsAndVisits(owner);
         }

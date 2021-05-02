@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 /**
  * @author Vitaliy Fedoriv
  */
-
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 
@@ -33,13 +32,13 @@ public class ExceptionControllerAdvice {
     public ResponseEntity<String> exception(Exception e) {
         ObjectMapper mapper = new ObjectMapper();
         ErrorInfo errorInfo = new ErrorInfo(e);
-        String respJSONstring = "{}";
+        String respJsonString = "{}";
         try {
-            respJSONstring = mapper.writeValueAsString(errorInfo);
+            respJsonString = mapper.writeValueAsString(errorInfo);
         } catch (JsonProcessingException e1) {
             e1.printStackTrace();
         }
-        return ResponseEntity.badRequest().body(respJSONstring);
+        return ResponseEntity.badRequest().body(respJsonString);
     }
 
     private static class ErrorInfo {

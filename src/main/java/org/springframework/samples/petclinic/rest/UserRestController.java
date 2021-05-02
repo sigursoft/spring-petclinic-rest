@@ -44,10 +44,10 @@ public class UserRestController {
         if (bindingResult.hasErrors() || (user == null)) {
             errors.addAllErrors(bindingResult);
             headers.add("errors", errors.toJSON());
-            return new ResponseEntity<User>(user, headers, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(user, headers, HttpStatus.BAD_REQUEST);
         }
 
         this.userService.saveUser(user);
-        return new ResponseEntity<User>(user, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(user, headers, HttpStatus.CREATED);
     }
 }

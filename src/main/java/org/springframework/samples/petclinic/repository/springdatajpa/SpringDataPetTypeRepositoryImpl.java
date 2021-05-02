@@ -28,7 +28,6 @@ import java.util.List;
 /**
  * @author Vitaliy Fedoriv
  */
-
 @Profile("spring-data-jpa")
 public class SpringDataPetTypeRepositoryImpl implements PetTypeRepositoryOverride {
 
@@ -51,5 +50,4 @@ public class SpringDataPetTypeRepositoryImpl implements PetTypeRepositoryOverrid
         }
         this.em.createQuery("DELETE FROM PetType pettype WHERE id=" + petTypeId).executeUpdate();
     }
-
 }

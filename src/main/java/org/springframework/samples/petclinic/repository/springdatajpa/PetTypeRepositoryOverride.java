@@ -26,7 +26,6 @@ import org.springframework.samples.petclinic.model.PetType;
 
 @Profile("spring-data-jpa")
 public interface PetTypeRepositoryOverride {
-	
-	void delete(PetType petType);
 
+    void delete(PetType petType);
 }

@@ -26,7 +26,6 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
  * @author Michael Isvy
  * @author Vitaliy Fedoriv
  */
-
 @Profile("spring-data-jpa")
 public interface SpringDataVisitRepository extends VisitRepository, Repository<Visit, Integer>, VisitRepositoryOverride {
 }

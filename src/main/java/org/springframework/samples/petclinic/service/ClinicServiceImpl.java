@@ -35,7 +35,6 @@ import java.util.Collection;
  * @author Vitaliy Fedoriv
  */
 @Service
-
 public class ClinicServiceImpl implements ClinicService {
 
     private final PetRepository petRepository;
@@ -76,15 +75,15 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	@Transactional(readOnly = true)
 	public Visit findVisitById(int visitId) throws DataAccessException {
-		Visit visit = null;
-		try {
-			visit = visitRepository.findById(visitId);
-		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
-		// just ignore not found exceptions for Jdbc/Jpa realization
-			return null;
-		}
-		return visit;
-	}
+        Visit visit;
+        try {
+            visit = visitRepository.findById(visitId);
+        } catch (ObjectRetrievalFailureException | EmptyResultDataAccessException e) {
+            // just ignore not found exceptions for Jdbc/Jpa realization
+            return null;
+        }
+        return visit;
+    }
 
 	@Override
 	@Transactional(readOnly = true)
@@ -101,15 +100,15 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	@Transactional(readOnly = true)
 	public Vet findVetById(int id) throws DataAccessException {
-		Vet vet = null;
-		try {
-			vet = vetRepository.findById(id);
-		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
-		// just ignore not found exceptions for Jdbc/Jpa realization
-			return null;
-		}
-		return vet;
-	}
+        Vet vet;
+        try {
+            vet = vetRepository.findById(id);
+        } catch (ObjectRetrievalFailureException | EmptyResultDataAccessException e) {
+            // just ignore not found exceptions for Jdbc/Jpa realization
+            return null;
+        }
+        return vet;
+    }
 
 	@Override
 	@Transactional(readOnly = true)
@@ -144,15 +143,15 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	@Transactional(readOnly = true)
 	public PetType findPetTypeById(int petTypeId) {
-		PetType petType = null;
-		try {
-			petType = petTypeRepository.findById(petTypeId);
-		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
-		// just ignore not found exceptions for Jdbc/Jpa realization
-			return null;
-		}
-		return petType;
-	}
+        PetType petType;
+        try {
+            petType = petTypeRepository.findById(petTypeId);
+        } catch (ObjectRetrievalFailureException | EmptyResultDataAccessException e) {
+            // just ignore not found exceptions for Jdbc/Jpa realization
+            return null;
+        }
+        return petType;
+    }
 
 	@Override
 	@Transactional(readOnly = true)
@@ -175,15 +174,15 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	@Transactional(readOnly = true)
 	public Specialty findSpecialtyById(int specialtyId) {
-		Specialty specialty = null;
-		try {
-			specialty = specialtyRepository.findById(specialtyId);
-		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
-		// just ignore not found exceptions for Jdbc/Jpa realization
-			return null;
-		}
-		return specialty;
-	}
+        Specialty specialty;
+        try {
+            specialty = specialtyRepository.findById(specialtyId);
+        } catch (ObjectRetrievalFailureException | EmptyResultDataAccessException e) {
+            // just ignore not found exceptions for Jdbc/Jpa realization
+            return null;
+        }
+        return specialty;
+    }
 
 	@Override
 	@Transactional(readOnly = true)
@@ -212,34 +211,33 @@ public class ClinicServiceImpl implements ClinicService {
 	@Override
 	@Transactional(readOnly = true)
 	public Owner findOwnerById(int id) throws DataAccessException {
-		Owner owner = null;
-		try {
-			owner = ownerRepository.findById(id);
-		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
-		// just ignore not found exceptions for Jdbc/Jpa realization
-			return null;
-		}
-		return owner;
-	}
+        Owner owner;
+        try {
+            owner = ownerRepository.findById(id);
+        } catch (ObjectRetrievalFailureException | EmptyResultDataAccessException e) {
+            // just ignore not found exceptions for Jdbc/Jpa realization
+            return null;
+        }
+        return owner;
+    }
 
 	@Override
 	@Transactional(readOnly = true)
 	public Pet findPetById(int id) throws DataAccessException {
-		Pet pet = null;
-		try {
-			pet = petRepository.findById(id);
-		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
-		// just ignore not found exceptions for Jdbc/Jpa realization
-			return null;
-		}
-		return pet;
-	}
+        Pet pet;
+        try {
+            pet = petRepository.findById(id);
+        } catch (ObjectRetrievalFailureException | EmptyResultDataAccessException e) {
+            // just ignore not found exceptions for Jdbc/Jpa realization
+            return null;
+        }
+        return pet;
+    }
 
 	@Override
 	@Transactional
 	public void savePet(Pet pet) throws DataAccessException {
 		petRepository.save(pet);
-
 	}
 
 	@Override
@@ -274,6 +272,4 @@ public class ClinicServiceImpl implements ClinicService {
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
-
-
 }

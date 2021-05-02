@@ -16,16 +16,15 @@
 
 package org.springframework.samples.petclinic.rest;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Vitaliy Fedoriv
@@ -62,17 +61,17 @@ public class BindingErrorsResponse {
         addError(error);
     }
 
-	private final List<BindingError> bindingErrors = new ArrayList<BindingError>();
+    private final List<BindingError> bindingErrors = new ArrayList<>();
 
-	public void addError(BindingError bindingError) {
-		this.bindingErrors.add(bindingError);
-	}
+    public void addError(BindingError bindingError) {
+        this.bindingErrors.add(bindingError);
+    }
 
-	public void addAllErrors(BindingResult bindingResult) {
-		for (FieldError fieldError : bindingResult.getFieldErrors()) {
-			BindingError error = new BindingError();
-			error.setObjectName(fieldError.getObjectName());
-			error.setFieldName(fieldError.getField());
+    public void addAllErrors(BindingResult bindingResult) {
+        for (FieldError fieldError : bindingResult.getFieldErrors()) {
+            BindingError error = new BindingError();
+            error.setObjectName(fieldError.getObjectName());
+            error.setFieldName(fieldError.getField());
 			error.setFieldValue(String.valueOf(fieldError.getRejectedValue()));
 			error.setErrorMessage(fieldError.getDefaultMessage());
 			addError(error);

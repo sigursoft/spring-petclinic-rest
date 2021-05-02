@@ -99,5 +99,4 @@ public class JdbcSpecialtyRepositoryImpl implements SpecialtyRepository {
         this.namedParameterJdbcTemplate.update("DELETE FROM vet_specialties WHERE specialty_id=:id", params);
         this.namedParameterJdbcTemplate.update("DELETE FROM specialties WHERE id=:id", params);
 	}
-
 }

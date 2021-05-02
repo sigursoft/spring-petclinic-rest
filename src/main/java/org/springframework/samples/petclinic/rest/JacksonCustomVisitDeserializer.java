@@ -33,7 +33,6 @@ import java.util.Date;
  * @author Vitaliy Fedoriv
  *
  */
-
 public class JacksonCustomVisitDeserializer extends StdDeserializer<Visit> {
 
 	public JacksonCustomVisitDeserializer() {
@@ -48,9 +47,9 @@ public class JacksonCustomVisitDeserializer extends StdDeserializer<Visit> {
     public Visit deserialize(JsonParser parser, DeserializationContext context) throws IOException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
         Visit visit = new Visit();
-        Pet pet = new Pet();
+        Pet pet;
         ObjectMapper mapper = new ObjectMapper();
-        Date visitDate = null;
+        Date visitDate;
         JsonNode node = parser.getCodec().readTree(parser);
         JsonNode pet_node = node.get("pet");
         pet = mapper.treeToValue(pet_node, Pet.class);

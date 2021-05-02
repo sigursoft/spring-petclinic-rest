@@ -47,74 +47,73 @@ public class VetRestController {
     @PreAuthorize( "hasRole(@roles.VET_ADMIN)" )
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Collection<Vet>> getAllVets(){
-		Collection<Vet> vets = new ArrayList<Vet>();
-		vets.addAll(this.clinicService.findAllVets());
-		if (vets.isEmpty()){
-			return new ResponseEntity<Collection<Vet>>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Collection<Vet>>(vets, HttpStatus.OK);
-	}
+        Collection<Vet> vets = new ArrayList<>(this.clinicService.findAllVets());
+        if (vets.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(vets, HttpStatus.OK);
+    }
 
     @PreAuthorize( "hasRole(@roles.VET_ADMIN)" )
 	@RequestMapping(value = "/{vetId}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Vet> getVet(@PathVariable("vetId") int vetId){
-		Vet vet = this.clinicService.findVetById(vetId);
-		if(vet == null){
-			return new ResponseEntity<Vet>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Vet>(vet, HttpStatus.OK);
-	}
+	public ResponseEntity<Vet> getVet(@PathVariable("vetId") int vetId) {
+        Vet vet = this.clinicService.findVetById(vetId);
+        if (vet == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(vet, HttpStatus.OK);
+    }
 
     @PreAuthorize( "hasRole(@roles.VET_ADMIN)" )
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<Vet> addVet(@RequestBody @Valid Vet vet, BindingResult bindingResult, UriComponentsBuilder ucBuilder){
-		BindingErrorsResponse errors = new BindingErrorsResponse();
-		HttpHeaders headers = new HttpHeaders();
-		if(bindingResult.hasErrors() || (vet == null)){
-			errors.addAllErrors(bindingResult);
-			headers.add("errors", errors.toJSON());
-			return new ResponseEntity<Vet>(headers, HttpStatus.BAD_REQUEST);
-		}
-		this.clinicService.saveVet(vet);
-		headers.setLocation(ucBuilder.path("/api/vets/{id}").buildAndExpand(vet.getId()).toUri());
-		return new ResponseEntity<Vet>(vet, headers, HttpStatus.CREATED);
-	}
+	public ResponseEntity<Vet> addVet(@RequestBody @Valid Vet vet, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
+        BindingErrorsResponse errors = new BindingErrorsResponse();
+        HttpHeaders headers = new HttpHeaders();
+        if (bindingResult.hasErrors() || (vet == null)) {
+            errors.addAllErrors(bindingResult);
+            headers.add("errors", errors.toJSON());
+            return new ResponseEntity<>(headers, HttpStatus.BAD_REQUEST);
+        }
+        this.clinicService.saveVet(vet);
+        headers.setLocation(ucBuilder.path("/api/vets/{id}").buildAndExpand(vet.getId()).toUri());
+        return new ResponseEntity<>(vet, headers, HttpStatus.CREATED);
+    }
 
     @PreAuthorize( "hasRole(@roles.VET_ADMIN)" )
 	@RequestMapping(value = "/{vetId}", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Vet> updateVet(@PathVariable("vetId") int vetId, @RequestBody @Valid Vet vet, BindingResult bindingResult){
 		BindingErrorsResponse errors = new BindingErrorsResponse();
 		HttpHeaders headers = new HttpHeaders();
-		if(bindingResult.hasErrors() || (vet == null)){
-			errors.addAllErrors(bindingResult);
-			headers.add("errors", errors.toJSON());
-			return new ResponseEntity<Vet>(headers, HttpStatus.BAD_REQUEST);
-		}
+		if(bindingResult.hasErrors() || (vet == null)) {
+            errors.addAllErrors(bindingResult);
+            headers.add("errors", errors.toJSON());
+            return new ResponseEntity<>(headers, HttpStatus.BAD_REQUEST);
+        }
 		Vet currentVet = this.clinicService.findVetById(vetId);
-		if(currentVet == null){
-			return new ResponseEntity<Vet>(HttpStatus.NOT_FOUND);
-		}
-		currentVet.setFirstName(vet.getFirstName());
-		currentVet.setLastName(vet.getLastName());
-		currentVet.clearSpecialties();
-		for(Specialty spec : vet.getSpecialties()) {
-			currentVet.addSpecialty(spec);
-		}
-		this.clinicService.saveVet(currentVet);
-		return new ResponseEntity<Vet>(currentVet, HttpStatus.NO_CONTENT);
-	}
+        if (currentVet == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        currentVet.setFirstName(vet.getFirstName());
+        currentVet.setLastName(vet.getLastName());
+        currentVet.clearSpecialties();
+        for (Specialty spec : vet.getSpecialties()) {
+            currentVet.addSpecialty(spec);
+        }
+        this.clinicService.saveVet(currentVet);
+        return new ResponseEntity<>(currentVet, HttpStatus.NO_CONTENT);
+    }
 
     @PreAuthorize( "hasRole(@roles.VET_ADMIN)" )
 	@RequestMapping(value = "/{vetId}", method = RequestMethod.DELETE, produces = "application/json")
 	@Transactional
-	public ResponseEntity<Void> deleteVet(@PathVariable("vetId") int vetId){
-		Vet vet = this.clinicService.findVetById(vetId);
-		if(vet == null){
-			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
-		}
-		this.clinicService.deleteVet(vet);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	}
+	public ResponseEntity<Void> deleteVet(@PathVariable("vetId") int vetId) {
+        Vet vet = this.clinicService.findVetById(vetId);
+        if (vet == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        this.clinicService.deleteVet(vet);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 
 

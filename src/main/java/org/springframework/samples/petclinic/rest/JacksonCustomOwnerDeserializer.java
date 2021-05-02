@@ -28,7 +28,6 @@ import java.io.IOException;
  * @author Vitaliy Fedoriv
  *
  */
-
 public class JacksonCustomOwnerDeserializer extends StdDeserializer<Owner> {
 
 	public JacksonCustomOwnerDeserializer(){
@@ -58,5 +57,4 @@ public class JacksonCustomOwnerDeserializer extends StdDeserializer<Owner> {
         owner.setTelephone(telephone);
 		return owner;
 	}
-
 }
