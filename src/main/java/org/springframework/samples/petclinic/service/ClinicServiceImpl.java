@@ -34,6 +34,7 @@ import java.util.Collection;
  * @author Michael Isvy
  * @author Vitaliy Fedoriv
  */
+@SuppressWarnings("ClassCanBeRecord")
 @Service
 public class ClinicServiceImpl implements ClinicService {
 

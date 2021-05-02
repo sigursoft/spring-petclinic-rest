@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xml>
-
-<configuration scan="true" scanPeriod="30 seconds">
+<configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://ch.qos.logback/xml/ns/logback"
+    xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback https://raw.githubusercontent.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"
+    scan="true" scanPeriod="30 seconds">
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>

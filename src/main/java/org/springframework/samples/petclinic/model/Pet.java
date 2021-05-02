@@ -15,33 +15,17 @@
  */
 package org.springframework.samples.petclinic.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.rest.JacksonCustomPetDeserializer;
 import org.springframework.samples.petclinic.rest.JacksonCustomPetSerializer;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import javax.persistence.*;
+import java.util.*;
 
 /**
  * Simple business object representing a pet.
@@ -50,6 +34,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * @author Juergen Hoeller
  * @author Sam Brannen
  */
+@SuppressWarnings("unused")
 @Entity
 @Table(name = "pets")
 @JsonSerialize(using = JacksonCustomPetSerializer.class)

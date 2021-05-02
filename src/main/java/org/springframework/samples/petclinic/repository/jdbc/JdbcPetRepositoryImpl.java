@@ -46,6 +46,7 @@ import java.util.*;
  * @author Mark Fisher
  * @author Vitaliy Fedoriv
  */
+@SuppressWarnings("unused")
 @Repository
 @Profile("jdbc")
 public class JdbcPetRepositoryImpl implements PetRepository {
@@ -56,6 +57,7 @@ public class JdbcPetRepositoryImpl implements PetRepository {
 
     private final OwnerRepository ownerRepository;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private final VisitRepository visitRepository;
 
     @Autowired
@@ -91,6 +93,7 @@ public class JdbcPetRepositoryImpl implements PetRepository {
         } catch (EmptyResultDataAccessException ex) {
             throw new ObjectRetrievalFailureException(Pet.class, id);
         }
+        assert ownerId != null;
         Owner owner = this.ownerRepository.findById(ownerId);
         return EntityUtils.getById(owner.getPets(), Pet.class, id);
     }

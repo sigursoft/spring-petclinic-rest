@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionControllerAdvice {
 
+    @SuppressWarnings("unused")
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> exception(Exception e) {
         ObjectMapper mapper = new ObjectMapper();
@@ -41,6 +42,7 @@ public class ExceptionControllerAdvice {
         return ResponseEntity.badRequest().body(respJsonString);
     }
 
+    @SuppressWarnings("unused")
     private static class ErrorInfo {
         public final String className;
         public final String exMessage;

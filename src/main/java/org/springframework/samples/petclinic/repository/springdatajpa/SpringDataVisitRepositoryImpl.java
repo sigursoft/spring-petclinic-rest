@@ -26,6 +26,7 @@ import javax.persistence.PersistenceContext;
 /**
  * @author Vitaliy Fedoriv
  */
+@SuppressWarnings("unused")
 @Profile("spring-data-jpa")
 public class SpringDataVisitRepositoryImpl implements VisitRepositoryOverride {
 

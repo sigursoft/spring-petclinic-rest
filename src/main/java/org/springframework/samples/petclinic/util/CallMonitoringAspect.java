@@ -54,6 +54,7 @@ public class CallMonitoringAspect {
         this.enabled = enabled;
     }
 
+    @SuppressWarnings("unused")
     @ManagedOperation
     public void reset() {
         this.callCount = 0;

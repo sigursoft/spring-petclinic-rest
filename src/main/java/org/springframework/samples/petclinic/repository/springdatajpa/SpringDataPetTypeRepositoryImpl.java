@@ -28,6 +28,7 @@ import java.util.List;
 /**
  * @author Vitaliy Fedoriv
  */
+@SuppressWarnings("unused")
 @Profile("spring-data-jpa")
 public class SpringDataPetTypeRepositoryImpl implements PetTypeRepositoryOverride {
 

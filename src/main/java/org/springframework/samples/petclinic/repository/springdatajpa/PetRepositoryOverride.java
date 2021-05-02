@@ -24,6 +24,7 @@ import org.springframework.samples.petclinic.model.Pet;
  *
  */
 
+@SuppressWarnings("unused")
 @Profile("spring-data-jpa")
 public interface PetRepositoryOverride {
 

@@ -64,21 +64,21 @@ public class SpecialtyRestControllerTests {
     private List<Specialty> specialties;
 
     @Before
-    public void initSpecialtys(){
-    	this.mockMvc = MockMvcBuilders.standaloneSetup(specialtyRestController)
-    			.setControllerAdvice(new ExceptionControllerAdvice())
-    			.build();
-    	specialties = new ArrayList<Specialty>();
+    public void initSpecialties() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(specialtyRestController)
+            .setControllerAdvice(new ExceptionControllerAdvice())
+            .build();
+        specialties = new ArrayList<>();
 
-    	Specialty specialty = new Specialty();
-    	specialty.setId(1);
-    	specialty.setName("radiology");
-    	specialties.add(specialty);
+        Specialty specialty = new Specialty();
+        specialty.setId(1);
+        specialty.setName("radiology");
+        specialties.add(specialty);
 
-    	specialty = new Specialty();
-    	specialty.setId(2);
-    	specialty.setName("surgery");
-    	specialties.add(specialty);
+        specialty = new Specialty();
+        specialty.setId(2);
+        specialty.setName("surgery");
+        specialties.add(specialty);
 
     	specialty = new Specialty();
     	specialty.setId(3);
@@ -109,27 +109,27 @@ public class SpecialtyRestControllerTests {
     }
 
     @Test
-    @WithMockUser(roles="VET_ADMIN")
-    public void testGetAllSpecialtysSuccess() throws Exception {
-    	specialties.remove(0);
-    	given(this.clinicService.findAllSpecialties()).willReturn(specialties);
+    @WithMockUser(roles = "VET_ADMIN")
+    public void testGetAllSpecialtiesSuccess() throws Exception {
+        specialties.remove(0);
+        given(this.clinicService.findAllSpecialties()).willReturn(specialties);
         this.mockMvc.perform(get("/api/specialties/")
-        	.accept(MediaType.APPLICATION_JSON))
+            .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json"))
-        	.andExpect(jsonPath("$.[0].id").value(2))
-        	.andExpect(jsonPath("$.[0].name").value("surgery"))
-        	.andExpect(jsonPath("$.[1].id").value(3))
-        	.andExpect(jsonPath("$.[1].name").value("dentistry"));
+            .andExpect(jsonPath("$.[0].id").value(2))
+            .andExpect(jsonPath("$.[0].name").value("surgery"))
+            .andExpect(jsonPath("$.[1].id").value(3))
+            .andExpect(jsonPath("$.[1].name").value("dentistry"));
     }
 
     @Test
-    @WithMockUser(roles="VET_ADMIN")
-    public void testGetAllSpecialtysNotFound() throws Exception {
-    	specialties.clear();
-    	given(this.clinicService.findAllSpecialties()).willReturn(specialties);
+    @WithMockUser(roles = "VET_ADMIN")
+    public void testGetAllSpecialtiesNotFound() throws Exception {
+        specialties.clear();
+        given(this.clinicService.findAllSpecialties()).willReturn(specialties);
         this.mockMvc.perform(get("/api/specialties/")
-        	.accept(MediaType.APPLICATION_JSON))
+            .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNotFound());
     }
 

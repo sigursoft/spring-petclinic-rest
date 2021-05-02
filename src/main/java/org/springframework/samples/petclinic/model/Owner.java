@@ -37,6 +37,7 @@ import java.util.*;
  * @author Sam Brannen
  * @author Michael Isvy
  */
+@SuppressWarnings("unused")
 @Entity
 @Table(name = "owners")
 @JsonSerialize(using = JacksonCustomOwnerSerializer.class)

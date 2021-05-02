@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static java.util.Objects.isNull;
 
+@SuppressWarnings("unused")
 @Service
 public class UserServiceImpl implements UserService {
 

@@ -70,29 +70,29 @@ public class OwnerRestControllerTests {
 
     @Before
     public void initOwners(){
-    	this.mockMvc = MockMvcBuilders.standaloneSetup(ownerRestController)
-    			.setControllerAdvice(new ExceptionControllerAdvice())
-    			.build();
-    	owners = new ArrayList<Owner>();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(ownerRestController)
+            .setControllerAdvice(new ExceptionControllerAdvice())
+            .build();
+        owners = new ArrayList<>();
 
-    	Owner ownerWithPet = new Owner();
-    	ownerWithPet.setId(1);
-    	ownerWithPet.setFirstName("George");
-    	ownerWithPet.setLastName("Franklin");
-    	ownerWithPet.setAddress("110 W. Liberty St.");
-    	ownerWithPet.setCity("Madison");
-    	ownerWithPet.setTelephone("6085551023");
-    	ownerWithPet.addPet(getTestPetWithIdAndName(ownerWithPet, 1, "Rosy"));
-    	owners.add(ownerWithPet);
+        Owner ownerWithPet = new Owner();
+        ownerWithPet.setId(1);
+        ownerWithPet.setFirstName("George");
+        ownerWithPet.setLastName("Franklin");
+        ownerWithPet.setAddress("110 W. Liberty St.");
+        ownerWithPet.setCity("Madison");
+        ownerWithPet.setTelephone("6085551023");
+        ownerWithPet.addPet(getTestPetWithIdAndName(ownerWithPet));
+        owners.add(ownerWithPet);
 
         Owner owner = new Owner();
-    	owner.setId(2);
-    	owner.setFirstName("Betty");
-    	owner.setLastName("Davis");
-    	owner.setAddress("638 Cardinal Ave.");
-    	owner.setCity("Sun Prairie");
-    	owner.setTelephone("6085551749");
-    	owners.add(owner);
+        owner.setId(2);
+        owner.setFirstName("Betty");
+        owner.setLastName("Davis");
+        owner.setAddress("638 Cardinal Ave.");
+        owner.setCity("Sun Prairie");
+        owner.setTelephone("6085551749");
+        owners.add(owner);
 
     	owner = new Owner();
     	owner.setId(3);
@@ -113,26 +113,26 @@ public class OwnerRestControllerTests {
     	owners.add(owner);
     }
 
-    private Pet getTestPetWithIdAndName(final Owner owner, final int id, final String name) {
+    private Pet getTestPetWithIdAndName(final Owner owner) {
         PetType petType = new PetType();
         petType.setId(2);
         petType.setName("dog");
         Pet pet = new Pet();
-        pet.setId(id);
-        pet.setName(name);
+        pet.setId(1);
+        pet.setName("Rosy");
         pet.setBirthDate(new Date());
         pet.setOwner(owner);
         pet.setType(petType);
-        pet.addVisit(getTestVisitForPet(pet, 1));
+        pet.addVisit(getTestVisitForPet(pet));
         return pet;
     }
 
-    private Visit getTestVisitForPet(final Pet pet, final int id) {
+    private Visit getTestVisitForPet(final Pet pet) {
         Visit visit = new Visit();
-        visit.setId(id);
+        visit.setId(1);
         visit.setPet(pet);
         visit.setDate(new Date());
-        visit.setDescription("test" + id);
+        visit.setDescription("test" + 1);
         return visit;
     }
 

@@ -66,20 +66,20 @@ public class PetTypeRestControllerTests {
 
     @Before
     public void initPetTypes(){
-    	this.mockMvc = MockMvcBuilders.standaloneSetup(petTypeRestController)
-    			.setControllerAdvice(new ExceptionControllerAdvice())
-    			.build();
-    	petTypes = new ArrayList<PetType>();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(petTypeRestController)
+            .setControllerAdvice(new ExceptionControllerAdvice())
+            .build();
+        petTypes = new ArrayList<>();
 
-    	PetType petType = new PetType();
-    	petType.setId(1);
-    	petType.setName("cat");
-    	petTypes.add(petType);
+        PetType petType = new PetType();
+        petType.setId(1);
+        petType.setName("cat");
+        petTypes.add(petType);
 
-    	petType = new PetType();
-    	petType.setId(2);
-    	petType.setName("dog");
-    	petTypes.add(petType);
+        petType = new PetType();
+        petType.setId(2);
+        petType.setName("dog");
+        petTypes.add(petType);
 
     	petType = new PetType();
     	petType.setId(3);

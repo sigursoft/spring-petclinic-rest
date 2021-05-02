@@ -54,7 +54,7 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    protected SimpleJdbcInsert insertVisit;
+    protected final SimpleJdbcInsert insertVisit;
 
     @Autowired
     public JdbcVisitRepositoryImpl(DataSource dataSource) {
@@ -158,17 +158,18 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
                 "SELECT pets.id as pets_id, name, birth_date, type_id, owner_id FROM pets WHERE pets.id=:id",
                 params,
                 new JdbcPetRowMapper());
-			params.put("type_id", pet.getTypeId());
-			petType = JdbcVisitRepositoryImpl.this.namedParameterJdbcTemplate.queryForObject(
-					"SELECT id, name FROM types WHERE id= :type_id",
-					params,
-					BeanPropertyRowMapper.newInstance(PetType.class));
-			pet.setType(petType);
-			params.put("owner_id", pet.getOwnerId());
-			owner = JdbcVisitRepositoryImpl.this.namedParameterJdbcTemplate.queryForObject(
-					"SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE id= :owner_id",
-					params,
-					BeanPropertyRowMapper.newInstance(Owner.class));
+            assert pet != null;
+            params.put("type_id", pet.getTypeId());
+            petType = JdbcVisitRepositoryImpl.this.namedParameterJdbcTemplate.queryForObject(
+                "SELECT id, name FROM types WHERE id= :type_id",
+                params,
+                BeanPropertyRowMapper.newInstance(PetType.class));
+            pet.setType(petType);
+            params.put("owner_id", pet.getOwnerId());
+            owner = JdbcVisitRepositoryImpl.this.namedParameterJdbcTemplate.queryForObject(
+                "SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE id= :owner_id",
+                params,
+                BeanPropertyRowMapper.newInstance(Owner.class));
 			pet.setOwner(owner);
 			visit.setPet(pet);
 			return visit;

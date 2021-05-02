@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.repository.jdbc;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
@@ -21,6 +23,7 @@ import java.util.Map;
 @Profile("jdbc")
 public class JdbcUserRepositoryImpl implements UserRepository {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final SimpleJdbcInsert insertUser;
 
@@ -36,7 +39,8 @@ public class JdbcUserRepositoryImpl implements UserRepository {
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
 
         try {
-            getByUsername(user.getUsername());
+            var oldUser = getByUsername(user.getUsername());
+            logger.debug("Old user: {}", oldUser);
             this.namedParameterJdbcTemplate.update("UPDATE users SET password=:password, enabled=:enabled WHERE username=:username", parameterSource);
         } catch (EmptyResultDataAccessException e) {
             this.insertUser.execute(parameterSource);
@@ -46,7 +50,6 @@ public class JdbcUserRepositoryImpl implements UserRepository {
     }
 
     private User getByUsername(String username) {
-
         Map<String, Object> params = new HashMap<>();
         params.put("username", username);
         return this.namedParameterJdbcTemplate.queryForObject("SELECT * FROM users WHERE username=:username",

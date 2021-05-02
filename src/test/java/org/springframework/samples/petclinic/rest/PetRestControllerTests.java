@@ -71,20 +71,20 @@ public class PetRestControllerTests {
 
     @Before
     public void initPets(){
-    	this.mockMvc = MockMvcBuilders.standaloneSetup(petRestController)
-    			.setControllerAdvice(new ExceptionControllerAdvice())
-    			.build();
-    	pets = new ArrayList<Pet>();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(petRestController)
+            .setControllerAdvice(new ExceptionControllerAdvice())
+            .build();
+        pets = new ArrayList<>();
 
-    	Owner owner = new Owner();
-    	owner.setId(1);
-    	owner.setFirstName("Eduardo");
-    	owner.setLastName("Rodriquez");
-    	owner.setAddress("2693 Commerce St.");
-    	owner.setCity("McFarland");
-    	owner.setTelephone("6085558763");
+        Owner owner = new Owner();
+        owner.setId(1);
+        owner.setFirstName("Eduardo");
+        owner.setLastName("Rodriquez");
+        owner.setAddress("2693 Commerce St.");
+        owner.setCity("McFarland");
+        owner.setTelephone("6085558763");
 
-    	PetType petType = new PetType();
+        PetType petType = new PetType();
     	petType.setId(2);
     	petType.setName("dog");
 

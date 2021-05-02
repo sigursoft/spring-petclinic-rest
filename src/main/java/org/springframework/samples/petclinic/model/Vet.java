@@ -48,6 +48,7 @@ public class Vet extends Person {
         return this.specialties;
     }
 
+    @SuppressWarnings("unused")
     protected void setSpecialtiesInternal(Set<Specialty> specialties) {
         this.specialties = specialties;
     }

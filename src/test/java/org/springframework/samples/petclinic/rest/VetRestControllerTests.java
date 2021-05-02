@@ -65,20 +65,20 @@ public class VetRestControllerTests {
 
     @Before
     public void initVets(){
-    	this.mockMvc = MockMvcBuilders.standaloneSetup(vetRestController)
-    			.setControllerAdvice(new ExceptionControllerAdvice())
-    			.build();
-    	vets = new ArrayList<Vet>();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(vetRestController)
+            .setControllerAdvice(new ExceptionControllerAdvice())
+            .build();
+        vets = new ArrayList<>();
 
 
-    	Vet vet = new Vet();
-    	vet.setId(1);
-    	vet.setFirstName("James");
-    	vet.setLastName("Carter");
-    	vets.add(vet);
+        Vet vet = new Vet();
+        vet.setId(1);
+        vet.setFirstName("James");
+        vet.setLastName("Carter");
+        vets.add(vet);
 
-    	vet = new Vet();
-    	vet.setId(2);
+        vet = new Vet();
+        vet.setId(2);
     	vet.setFirstName("Helen");
     	vet.setLastName("Leary");
     	vets.add(vet);

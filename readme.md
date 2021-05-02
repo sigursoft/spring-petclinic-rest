@@ -1,7 +1,8 @@
 # REST version of Spring PetClinic Sample Application (spring-framework-petclinic extend ) [![Build Status](https://travis-ci.org/spring-petclinic/spring-petclinic-rest.png?branch=master)](https://travis-ci.org/spring-petclinic/spring-petclinic-rest/)
 
 This backend version of the Spring Petclinic application only provides a REST API. **There is no UI**.
-The [spring-petclinic-angular project](https://github.com/spring-petclinic/spring-petclinic-angular) is a Angular front-end application which consumes the REST API.
+The [spring-petclinic-angular project](https://github.com/spring-petclinic/spring-petclinic-angular) is an Angular
+front-end application which consumes the REST API.
 
 ## Understanding the Spring Petclinic application with a few diagrams
 
@@ -69,7 +70,7 @@ You may also start a MySql database with docker:
 docker run --name mysql-petclinic -e MYSQL_ROOT_PASSWORD=petclinic -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:5.7.8
 ```
 
-For PostgeSQL database, it is needed to change param "hsqldb" to "postgresql" in string
+For PostgreSQL database, it is needed to change param "hsqldb" to "postgresql" in string
 ```
 spring.profiles.active=hsqldb,spring-data-jpa
 ```
@@ -129,8 +130,8 @@ The following items should be installed in your system:
 * git command line tool (https://help.github.com/articles/set-up-git)
 * Eclipse with the m2e plugin (m2e is installed by default when using the STS (http://www.springsource.org/sts) distribution of Eclipse)
 
-Note: when m2e is available, there is an m2 icon in Help -> About dialog.
-If m2e is not there, just follow the install process here: http://eclipse.org/m2e/download/
+Note: when m2e is available, there is a m2 icon in Help -> About dialog. If m2e is not there, just follow the
+installation process here: http://eclipse.org/m2e/download/
 
 
 ### Steps:
@@ -147,14 +148,14 @@ File -> Import -> Maven -> Existing Maven project
 
 ## Looking for something in particular?
 
-| Layer | Source |
-|--|--|
-| REST API controllers | [REST folder](src/main/java/org/springframework/samples/petclinic/rest) |
-| Service | [ClinicServiceImpl.java](src/main/java/org/springframework/samples/petclinic/service/ClinicServiceImpl.java) |
-| JDBC | [jdbc folder](src/main/java/org/springframework/samples/petclinic/repository/jdbc) |
-| JPA | [jpa folder](src/main/java/org/springframework/samples/petclinic/repository/jpa) |
-| Spring Data JPA | [springdatajpa folder](src/main/java/org/springframework/samples/petclinic/repository/springdatajpa) |
-| Tests | [AbstractClinicServiceTests.java](src/test/java/org/springframework/samples/petclinic/service/AbstractClinicServiceTests.java) |
+| Layer | Source | |--|--| | REST API controllers
+| [REST folder](src/main/java/org/springframework/samples/petclinic/rest) | | Service
+| [ClinicServiceImpl.java](src/main/java/org/springframework/samples/petclinic/service/ClinicServiceImpl.java) | | JDBC
+| [jdbc folder](src/main/java/org/springframework/samples/petclinic/repository/jdbc) | | JPA
+| [jpa folder](src/main/java/org/springframework/samples/petclinic/repository/jpa) | | Spring Data JPA
+| [springdatajpa folder](src/main/java/org/springframework/samples/petclinic/repository/springdatajpa) | | Tests
+| [AbstractClinicServiceTests.java](src/test/java/org/springframework/samples/petclinic/service/clinicService/AbstractClinicServiceTests.java)
+|
 
 
 ## Publishing a Docker image

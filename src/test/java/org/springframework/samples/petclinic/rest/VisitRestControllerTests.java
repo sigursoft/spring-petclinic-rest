@@ -70,21 +70,21 @@ public class VisitRestControllerTests {
 
     @Before
     public void initVisits(){
-    	this.mockMvc = MockMvcBuilders.standaloneSetup(visitRestController)
-    			.setControllerAdvice(new ExceptionControllerAdvice())
-    			.build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(visitRestController)
+            .setControllerAdvice(new ExceptionControllerAdvice())
+            .build();
 
-    	visits = new ArrayList<Visit>();
+        visits = new ArrayList<>();
 
-    	Owner owner = new Owner();
-    	owner.setId(1);
-    	owner.setFirstName("Eduardo");
-    	owner.setLastName("Rodriquez");
-    	owner.setAddress("2693 Commerce St.");
-    	owner.setCity("McFarland");
-    	owner.setTelephone("6085558763");
+        Owner owner = new Owner();
+        owner.setId(1);
+        owner.setFirstName("Eduardo");
+        owner.setLastName("Rodriquez");
+        owner.setAddress("2693 Commerce St.");
+        owner.setCity("McFarland");
+        owner.setTelephone("6085558763");
 
-    	PetType petType = new PetType();
+        PetType petType = new PetType();
     	petType.setId(2);
     	petType.setName("dog");
 

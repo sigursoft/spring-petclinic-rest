@@ -48,6 +48,7 @@ import java.util.*;
  * @author Michael Isvy
  * @author Vitaliy Fedoriv
  */
+@SuppressWarnings("NullableProblems")
 @Repository
 @Profile("jdbc")
 public class JdbcVetRepositoryImpl implements VetRepository {
