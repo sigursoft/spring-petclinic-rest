@@ -27,6 +27,8 @@ import javax.persistence.Query;
 import java.util.Collection;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 /**
  * JPA implementation of the ClinicService interface using EntityManager.
  * <p/>
@@ -45,16 +47,14 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
     @PersistenceContext
     private EntityManager em;
 
-    @Override
     public void save(Visit visit) {
-        if (visit.getId() == null) {
+        if (isNull(visit.getId())) {
             this.em.persist(visit);
         } else {
             this.em.merge(visit);
         }
     }
 
-    @Override
     @SuppressWarnings("unchecked")
     public List<Visit> findByPetId(Integer petId) {
         Query query = this.em.createQuery("SELECT v FROM Visit v where v.pet.id= :id");
@@ -62,18 +62,15 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
         return query.getResultList();
     }
 
-    @Override
 	public Visit findById(int id) throws DataAccessException {
 		return this.em.find(Visit.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public Collection<Visit> findAll() throws DataAccessException {
         return this.em.createQuery("SELECT v FROM Visit v").getResultList();
 	}
 
-	@Override
 	public void delete(Visit visit) throws DataAccessException {
         this.em.remove(this.em.contains(visit) ? visit : this.em.merge(visit));
 	}

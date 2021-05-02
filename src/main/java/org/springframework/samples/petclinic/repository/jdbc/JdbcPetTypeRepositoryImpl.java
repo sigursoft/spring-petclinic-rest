@@ -40,7 +40,6 @@ import java.util.Map;
 /**
  * @author Vitaliy Fedoriv
  */
-
 @Repository
 @Profile("jdbc")
 public class JdbcPetTypeRepositoryImpl implements PetTypeRepository {
@@ -57,7 +56,6 @@ public class JdbcPetTypeRepositoryImpl implements PetTypeRepository {
             .usingGeneratedKeyColumns("id");
     }
 
-    @Override
 	public PetType findById(int id) {
 		PetType petType;
         try {
@@ -73,7 +71,6 @@ public class JdbcPetTypeRepositoryImpl implements PetTypeRepository {
         return petType;
 	}
 
-	@Override
 	public Collection<PetType> findAll() throws DataAccessException {
 		Map<String, Object> params = new HashMap<>();
         return this.namedParameterJdbcTemplate.query(
@@ -82,7 +79,6 @@ public class JdbcPetTypeRepositoryImpl implements PetTypeRepository {
             BeanPropertyRowMapper.newInstance(PetType.class));
 	}
 
-	@Override
 	public void save(PetType petType) throws DataAccessException {
 		BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(petType);
 		if (petType.isNew()) {
@@ -94,7 +90,6 @@ public class JdbcPetTypeRepositoryImpl implements PetTypeRepository {
         }
 	}
 
-	@Override
 	public void delete(PetType petType) throws DataAccessException {
         Map<String, Object> pettype_params = new HashMap<>();
         pettype_params.put("id", petType.getId());

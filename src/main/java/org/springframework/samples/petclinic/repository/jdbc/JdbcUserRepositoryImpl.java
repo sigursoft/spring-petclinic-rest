@@ -33,7 +33,6 @@ public class JdbcUserRepositoryImpl implements UserRepository {
         this.insertUser = new SimpleJdbcInsert(dataSource).withTableName("users");
     }
 
-    @Override
     public void save(User user) throws DataAccessException {
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(user);
         try {

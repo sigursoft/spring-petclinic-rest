@@ -33,7 +33,6 @@ public class SpringDataVisitRepositoryImpl implements VisitRepositoryOverride {
     @PersistenceContext
     private EntityManager em;
 
-	@Override
 	public void delete(Visit visit) throws DataAccessException {
 		String visitId = visit.getId().toString();
 		this.em.createQuery("DELETE FROM Visit visit WHERE id=" + visitId).executeUpdate();

@@ -32,7 +32,6 @@ public class SpringDataSpecialtyRepositoryImpl implements SpecialtyRepositoryOve
     @PersistenceContext
     private EntityManager em;
 
-	@Override
 	public void delete(Specialty specialty) {
         this.em.remove(this.em.contains(specialty) ? specialty : this.em.merge(specialty));
 		Integer specId = specialty.getId();

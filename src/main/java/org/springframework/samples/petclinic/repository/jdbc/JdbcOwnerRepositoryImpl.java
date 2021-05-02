@@ -61,13 +61,10 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
 
     @Autowired
     public JdbcOwnerRepositoryImpl(DataSource dataSource) {
-
         this.insertOwner = new SimpleJdbcInsert(dataSource)
             .withTableName("owners")
             .usingGeneratedKeyColumns("id");
-
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-
     }
 
 
@@ -76,7 +73,6 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
      * the given name; also loads the {@link Pet Pets} and {@link Visit Visits} for the corresponding owners, if not
      * already loaded.
      */
-    @Override
     public Collection<Owner> findByLastName(String lastName) throws DataAccessException {
         Map<String, Object> params = new HashMap<>();
         params.put("lastName", lastName + "%");
@@ -93,7 +89,6 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
      * Loads the {@link Owner} with the supplied <code>id</code>; also loads the {@link Pet Pets} and {@link Visit Visits}
      * for the corresponding owner, if not already loaded.
      */
-    @Override
     public Owner findById(int id) throws DataAccessException {
         Owner owner;
         try {
@@ -128,7 +123,6 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
         }
     }
 
-    @Override
     public void save(Owner owner) throws DataAccessException {
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(owner);
         if (owner.isNew()) {
@@ -160,7 +154,6 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
         }
     }
 
-    @Override
 	public Collection<Owner> findAll() throws DataAccessException {
 		List<Owner> owners = this.namedParameterJdbcTemplate.query(
             "SELECT id, first_name, last_name, address, city, telephone FROM owners",
@@ -172,7 +165,6 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
 	    return owners;
 	}
 
-	@Override
 	@Transactional
 	public void delete(Owner owner) throws DataAccessException {
 		Map<String, Object> owner_params = new HashMap<>();
@@ -193,6 +185,4 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
         }
         this.namedParameterJdbcTemplate.update("DELETE FROM owners WHERE id=:id", owner_params);
 	}
-
-
 }

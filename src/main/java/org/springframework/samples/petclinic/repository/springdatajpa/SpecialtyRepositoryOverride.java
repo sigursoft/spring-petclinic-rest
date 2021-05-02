@@ -23,7 +23,6 @@ import org.springframework.samples.petclinic.model.Specialty;
  * @author Vitaliy Fedoriv
  *
  */
-
 @SuppressWarnings("unused")
 @Profile("spring-data-jpa")
 public interface SpecialtyRepositoryOverride {

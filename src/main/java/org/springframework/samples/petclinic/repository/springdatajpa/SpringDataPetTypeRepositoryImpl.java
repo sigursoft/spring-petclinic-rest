@@ -36,7 +36,6 @@ public class SpringDataPetTypeRepositoryImpl implements PetTypeRepositoryOverrid
     private EntityManager em;
 
     @SuppressWarnings("unchecked")
-    @Override
     public void delete(PetType petType) {
         this.em.remove(this.em.contains(petType) ? petType : this.em.merge(petType));
         Integer petTypeId = petType.getId();

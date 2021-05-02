@@ -65,7 +65,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
             .usingGeneratedKeyColumns("id");
     }
 
-
     /**
      * Creates a {@link MapSqlParameterSource} based on data values from the supplied {@link Visit} instance.
      */
@@ -77,7 +76,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
             .addValue("pet_id", visit.getPet().getId());
     }
 
-    @Override
     public List<Visit> findByPetId(Integer petId) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", petId);
@@ -97,7 +95,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
         return visits;
     }
 
-    @Override
 	public Visit findById(int id) throws DataAccessException {
 		Visit visit;
 		try {
@@ -113,7 +110,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 		return visit;
 	}
 
-	@Override
 	public Collection<Visit> findAll() throws DataAccessException {
 		Map<String, Object> params = new HashMap<>();
 		return this.namedParameterJdbcTemplate.query(
@@ -121,7 +117,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 				params, new JdbcVisitRowMapperExt());
 	}
 
-	@Override
 	public void save(Visit visit) throws DataAccessException {
 		if (visit.isNew()) {
 			Number newKey = this.insertVisit.executeAndReturnKey(createVisitParameterSource(visit));
@@ -133,7 +128,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 		}
 	}
 
-	@Override
 	public void delete(Visit visit) throws DataAccessException {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", visit.getId());
@@ -142,7 +136,6 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 
 	protected class JdbcVisitRowMapperExt implements RowMapper<Visit> {
 
-		@Override
 		public Visit mapRow(ResultSet rs, int rowNum) throws SQLException {
             Visit visit = new Visit();
             JdbcPet pet;
@@ -175,5 +168,4 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
 			return visit;
 		}
 	}
-
 }

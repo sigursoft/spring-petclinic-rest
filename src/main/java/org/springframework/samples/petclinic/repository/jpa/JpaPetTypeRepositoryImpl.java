@@ -40,18 +40,15 @@ public class JpaPetTypeRepositoryImpl implements PetTypeRepository {
     @PersistenceContext
     private EntityManager em;
 
-	@Override
 	public PetType findById(int id) {
 		return this.em.find(PetType.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public Collection<PetType> findAll() throws DataAccessException {
 		return this.em.createQuery("SELECT ptype FROM PetType ptype").getResultList();
 	}
 
-	@Override
 	public void save(PetType petType) throws DataAccessException {
 		if (petType.getId() == null) {
             this.em.persist(petType);
@@ -62,7 +59,6 @@ public class JpaPetTypeRepositoryImpl implements PetTypeRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public void delete(PetType petType) throws DataAccessException {
         this.em.remove(this.em.contains(petType) ? petType : this.em.merge(petType));
         Integer petTypeId = petType.getId();
@@ -77,5 +73,4 @@ public class JpaPetTypeRepositoryImpl implements PetTypeRepository {
         }
         this.em.createQuery("DELETE FROM PetType pettype WHERE id=" + petTypeId).executeUpdate();
     }
-
 }

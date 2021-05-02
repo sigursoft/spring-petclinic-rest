@@ -67,7 +67,6 @@ public class JdbcVetRepositoryImpl implements VetRepository {
     /**
      * Refresh the cache of Vets that the ClinicService is holding.
      */
-    @Override
     public Collection<Vet> findAll() throws DataAccessException {
         // Retrieve the list of all vets.
         List<Vet> vets = new ArrayList<>(this.jdbcTemplate.query(
@@ -98,7 +97,6 @@ public class JdbcVetRepositoryImpl implements VetRepository {
         return vets;
     }
 
-    @Override
 	public Vet findById(int id) throws DataAccessException {
 		Vet vet;
 		try {
@@ -133,7 +131,6 @@ public class JdbcVetRepositoryImpl implements VetRepository {
 		return vet;
 	}
 
-	@Override
 	public void save(Vet vet) throws DataAccessException {
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(vet);
         if (vet.isNew()) {
@@ -146,7 +143,6 @@ public class JdbcVetRepositoryImpl implements VetRepository {
         updateVetSpecialties(vet);
     }
 
-	@Override
 	public void delete(Vet vet) throws DataAccessException {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", vet.getId());
@@ -165,5 +161,4 @@ public class JdbcVetRepositoryImpl implements VetRepository {
 			}
 		}
 	}
-
 }

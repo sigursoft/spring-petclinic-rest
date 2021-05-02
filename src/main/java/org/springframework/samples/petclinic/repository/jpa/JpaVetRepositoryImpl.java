@@ -25,6 +25,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
 
+import static java.util.Objects.isNull;
+
 /**
  * JPA implementation of the {@link VetRepository} interface.
  *
@@ -41,28 +43,23 @@ public class JpaVetRepositoryImpl implements VetRepository {
     @PersistenceContext
     private EntityManager em;
 
-
-    @Override
 	public Vet findById(int id) throws DataAccessException {
 		return this.em.find(Vet.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public Collection<Vet> findAll() throws DataAccessException {
 		return this.em.createQuery("SELECT vet FROM Vet vet").getResultList();
 	}
 
-	@Override
 	public void save(Vet vet) throws DataAccessException {
-        if (vet.getId() == null) {
+        if (isNull(vet.getId())) {
             this.em.persist(vet);
         } else {
             this.em.merge(vet);
         }
 	}
 
-	@Override
 	public void delete(Vet vet) throws DataAccessException {
 		this.em.remove(this.em.contains(vet) ? vet : this.em.merge(vet));
 	}

@@ -15,11 +15,11 @@
  */
 package org.springframework.samples.petclinic.repository.jdbc;
 
+import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-
-import org.springframework.jdbc.core.RowMapper;
 
 /**
  * {@link RowMapper} implementation mapping data from a {@link ResultSet} to the corresponding properties
@@ -27,7 +27,6 @@ import org.springframework.jdbc.core.RowMapper;
  */
 public class JdbcPetRowMapper implements RowMapper<JdbcPet> {
 
-    @Override
     public JdbcPet mapRow(ResultSet rs, int rownum) throws SQLException {
         JdbcPet pet = new JdbcPet();
         pet.setId(rs.getInt("pets_id"));

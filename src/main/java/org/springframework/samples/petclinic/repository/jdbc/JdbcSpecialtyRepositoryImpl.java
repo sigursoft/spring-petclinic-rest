@@ -37,7 +37,6 @@ import java.util.Map;
 /**
  * @author Vitaliy Fedoriv
  */
-
 @Repository
 @Profile("jdbc")
 public class JdbcSpecialtyRepositoryImpl implements SpecialtyRepository {
@@ -54,7 +53,6 @@ public class JdbcSpecialtyRepositoryImpl implements SpecialtyRepository {
             .usingGeneratedKeyColumns("id");
     }
 
-    @Override
 	public Specialty findById(int id) {
 		Specialty specialty;
         try {
@@ -70,7 +68,6 @@ public class JdbcSpecialtyRepositoryImpl implements SpecialtyRepository {
         return specialty;
 	}
 
-	@Override
 	public Collection<Specialty> findAll() throws DataAccessException {
 		Map<String, Object> params = new HashMap<>();
         return this.namedParameterJdbcTemplate.query(
@@ -79,7 +76,6 @@ public class JdbcSpecialtyRepositoryImpl implements SpecialtyRepository {
             BeanPropertyRowMapper.newInstance(Specialty.class));
 	}
 
-	@Override
 	public void save(Specialty specialty) throws DataAccessException {
 		BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(specialty);
 		if (specialty.isNew()) {
@@ -92,7 +88,6 @@ public class JdbcSpecialtyRepositoryImpl implements SpecialtyRepository {
 
 	}
 
-	@Override
 	public void delete(Specialty specialty) throws DataAccessException {
 		Map<String, Object> params = new HashMap<>();
         params.put("id", specialty.getId());

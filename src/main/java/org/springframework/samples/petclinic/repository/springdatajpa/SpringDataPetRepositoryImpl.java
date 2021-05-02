@@ -32,7 +32,6 @@ public class SpringDataPetRepositoryImpl implements PetRepositoryOverride {
     @PersistenceContext
     private EntityManager em;
 
-	@Override
 	public void delete(Pet pet) {
 		String petId = pet.getId().toString();
 		this.em.createQuery("DELETE FROM Visit visit WHERE pet_id=" + petId).executeUpdate();

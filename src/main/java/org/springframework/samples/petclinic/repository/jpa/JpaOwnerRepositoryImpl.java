@@ -27,6 +27,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Collection;
 
+import static java.util.Objects.isNull;
+
 /**
  * JPA implementation of the {@link OwnerRepository} interface.
  *
@@ -59,7 +61,6 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
         return query.getResultList();
     }
 
-    @Override
     public Owner findById(int id) {
         // using 'join fetch' because a single query should load both owners and pets
         // using 'left join fetch' because it might happen that an owner does not have pets yet
@@ -68,27 +69,21 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
         return (Owner) query.getSingleResult();
     }
 
-
-    @Override
     public void save(Owner owner) {
-        if (owner.getId() == null) {
+        if (isNull(owner.getId())) {
             this.em.persist(owner);
         } else {
             this.em.merge(owner);
         }
-
     }
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public Collection<Owner> findAll() throws DataAccessException {
 		Query query = this.em.createQuery("SELECT owner FROM Owner owner");
         return query.getResultList();
 	}
 
-	@Override
 	public void delete(Owner owner) throws DataAccessException {
 		this.em.remove(this.em.contains(owner) ? owner : this.em.merge(owner));
 	}
-
 }
